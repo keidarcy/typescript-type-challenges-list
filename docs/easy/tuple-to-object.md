@@ -1,0 +1,50 @@
+---
+sidebar_label: 'Tuple to Object'
+sidebar_position: 4
+---
+# Readonly
+
+## introduction
+
+Give an array, transform into an object type and the key/value must in the given array.
+
+For example
+
+```ts
+const tuple = ['tesla', 'model 3', 'model X', 'model Y'] as const
+
+const result: TupleToObject<typeof tuple> // expected { tesla: 'tesla', 'model 3': 'model 3', 'model X': 'model X', 'model Y': 'model Y'}
+```
+
+## start point
+
+```ts
+/* _____________ Your Code Here _____________ */
+
+type TupleToObject<T extends readonly any[]> = any
+
+/* _____________ Test Cases _____________ */
+import { Equal, Expect } from '@type-challenges/utils'
+
+const tuple = ['tesla', 'model 3', 'model X', 'model Y'] as const
+
+type cases = [
+  Expect<Equal<TupleToObject<typeof tuple>, { tesla: 'tesla'; 'model 3': 'model 3'; 'model X': 'model X'; 'model Y': 'model Y'}>>,
+]
+
+// @ts-expect-error
+type error = TupleToObject<[[1, 2], {}]>
+```
+
+## my solution
+
+<details>
+
+  <summary>Spoiler warning // Click to reveal answer</summary>
+
+```ts twoslash
+type TupleToObject<T extends readonly any[]> = {
+  [k in T[number]]: k
+}
+```
+</details>

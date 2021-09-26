@@ -1,0 +1,84 @@
+---
+sidebar_label: 'Get Return Type'
+sidebar_position: 1
+tags: [infer, build-in]
+---
+
+# Get Return Type
+
+## introduction
+
+Implement the built-in `ReturnType<T>` generic without using it.
+
+For example
+
+```ts
+const fn = (v: boolean) => {
+  if (v) return 1;
+  else return 2;
+};
+
+type a = MyReturnType<typeof fn>; // should be "1 | 2"
+```
+
+## start point
+
+```ts
+/* _____________ Your Code Here _____________ */
+
+type MyReturnType<T> = any;
+
+/* _____________ Test Cases _____________ */
+import { Equal, Expect } from '@type-challenges/utils';
+
+type cases = [
+  Expect<Equal<string, MyReturnType<() => string>>>,
+  Expect<Equal<123, MyReturnType<() => 123>>>,
+  Expect<Equal<ComplexObject, MyReturnType<() => ComplexObject>>>,
+  Expect<Equal<Promise<boolean>, MyReturnType<() => Promise<boolean>>>>,
+  Expect<Equal<() => 'foo', MyReturnType<() => () => 'foo'>>>,
+  Expect<Equal<1 | 2, MyReturnType<typeof fn>>>,
+  Expect<Equal<1 | 2, MyReturnType<typeof fn1>>>
+];
+
+type ComplexObject = {
+  a: [12, 'foo'];
+  bar: 'hello';
+  prev(): number;
+};
+
+const fn = (v: boolean) => (v ? 1 : 2);
+const fn1 = (v: boolean, w: any) => (v ? 1 : 2);
+```
+
+<Links questionNumber={'2'} />
+
+## My solution
+
+<details>
+
+{' '}
+
+<summary>Spoiler warning // Click to reveal answer</summary>
+
+```ts twoslash
+type MyReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
+```
+
+</details>
+
+export const Links = ({ questionNumber }) => {
+  return (
+    <span className="badge-links">
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/play`}>
+        take the challenge
+      </a>
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/answer`}>
+        share
+      </a>
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/solutions`}>
+        solutions
+      </a>
+    </span>
+  );
+};
