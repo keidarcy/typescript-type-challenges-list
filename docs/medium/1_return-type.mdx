@@ -51,13 +51,11 @@ const fn = (v: boolean) => (v ? 1 : 2);
 const fn1 = (v: boolean, w: any) => (v ? 1 : 2);
 ```
 
-<Links questionNumber={'2'} />
+<TCLinks questionNumber={'2'} />
 
 ## My solution
 
 <details>
-
-{' '}
 
 <summary>Spoiler warning // Click to reveal answer</summary>
 
@@ -67,9 +65,12 @@ type MyReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
 
 </details>
 
-export const Links = ({ questionNumber }) => {
+export const TCLinks = ({ questionNumber }) => {
   return (
     <span className="badge-links">
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}`}>
+        View on GitHub
+      </a>
       <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/play`}>
         take the challenge
       </a>

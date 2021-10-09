@@ -1,25 +1,19 @@
 ---
-sidebar_label: 'Get Readonly Keys'
+sidebar_label: 'Union to Intersection'
 sidebar_position: 1
-tags: [utils, object-keys]
+tags: [utils, infer]
 ---
 
 # Get Return Type
 
 ## introduction
 
-Implement a generic `GetReadonlyKeys<T>` that returns a union of the readonly keys of an Object.
+Implement the advanced util type `UnionToIntersection<U>`
 
 For example
 
 ```ts
-interface Todo {
-  readonly title: string;
-  readonly description: string;
-  completed: boolean;
-}
-
-type Keys = GetReadonlyKeys<Todo>; // expected to be "title" | "description"
+type I = Union2Intersection<'foo' | 42 | true>; // expected to be 'foo' & 42 & true
 ```
 
 ## start point
@@ -50,33 +44,30 @@ interface Todo2 {
 }
 ```
 
-<Links questionNumber={'5'} />
+<TCLinks questionNumber={'55'} />
 
 ## My solution
 
 <details>
 
-{' '}
-
 <summary>Spoiler warning // Click to reveal answer</summary>
 
 ```ts twoslash
-export type ReadonlyKeys<T extends object> = {
-  [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, never, P>;
-}[keyof T];
-
-type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
-  T
->() => T extends Y ? 1 : 2
-  ? A
-  : B;
+type UnionToIntersection<U> = (U extends any ? (arg: U) => any : never) extends (
+  arg: infer I
+) => void
+  ? I
+  : never;
 ```
 
 </details>
 
-export const Links = ({ questionNumber }) => {
+export const TCLinks = ({ questionNumber }) => {
   return (
     <span className="badge-links">
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}`}>
+        View on GitHub
+      </a>
       <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/play`}>
         take the challenge
       </a>

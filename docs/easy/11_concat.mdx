@@ -1,19 +1,18 @@
 ---
-sidebar_label: 'Union to Intersection'
-sidebar_position: 1
-tags: [utils, infer]
+sidebar_label: 'Concat'
+sidebar_position: 11
 ---
 
-# Get Return Type
+# Exclude
 
 ## introduction
 
-Implement the advanced util type `UnionToIntersection<U>`
+Implement the JavaScript `Array.concat` function in the type system. A type takes the two arguments. The output should be a new array that includes inputs in ltr order
 
 For example
 
 ```ts
-type I = Union2Intersection<'foo' | 42 | true>; // expected to be 'foo' & 42 & true
+type Result = Concat<[1], [2]>; // expected to be [1, 2]
 ```
 
 ## start point
@@ -21,50 +20,39 @@ type I = Union2Intersection<'foo' | 42 | true>; // expected to be 'foo' & 42 & t
 ```ts
 /* _____________ Your Code Here _____________ */
 
-type GetReadonlyKeys<T> = any;
+type Concat<T, U> = any;
 
 /* _____________ Test Cases _____________ */
 import { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
-  Expect<Equal<'title', GetReadonlyKeys<Todo1>>>,
-  Expect<Equal<'title' | 'description', GetReadonlyKeys<Todo2>>>
+  Expect<Equal<Concat<[], []>, []>>,
+  Expect<Equal<Concat<[], [1]>, [1]>>,
+  Expect<Equal<Concat<[1, 2], [3, 4]>, [1, 2, 3, 4]>>,
+  Expect<
+    Equal<
+      Concat<['1', 2, '3'], [false, boolean, '4']>,
+      ['1', 2, '3', false, boolean, '4']
+    >
+  >
 ];
-
-interface Todo1 {
-  readonly title: string;
-  description: string;
-  completed: boolean;
-}
-
-interface Todo2 {
-  readonly title: string;
-  readonly description: string;
-  completed?: boolean;
-}
 ```
 
-<Links questionNumber={'55'} />
+<TCLinks questionNumber={'268'} />
 
-## My solution
+## my solution
 
 <details>
-
-{' '}
 
 <summary>Spoiler warning // Click to reveal answer</summary>
 
 ```ts twoslash
-type UnionToIntersection<U> = (U extends any ? (arg: U) => any : never) extends (
-  arg: infer I
-) => void
-  ? I
-  : never;
+type Concat<T extends any[], U extends any[]> = [...T, ...U];
 ```
 
 </details>
 
-export const Links = ({ questionNumber }) => {
+export const TCLinks = ({ questionNumber }) => {
   return (
     <span className="badge-links">
       <a target="\_blank" href={`https://tsch.js.org/${questionNumber}`}>

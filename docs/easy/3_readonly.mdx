@@ -1,0 +1,83 @@
+---
+sidebar_label: 'Readonly'
+sidebar_position: 3
+---
+
+# Readonly
+
+## introduction
+
+```ts twoslash
+// @errors: 2304
+interface Todo {
+  title: string;
+  description: string;
+}
+
+type MyReadonly<T> = any;
+
+const todo: MyReadonly<Todo> = {
+  title: 'Hey',
+  description: 'foobar',
+};
+
+todo.title = 'Hello'; // Error: cannot reassign a readonly property
+todo.description = 'barFoo'; // Error: cannot reassign a readonly property
+```
+
+## start point
+
+```ts
+/* _____________ Your Code Here _____________ */
+
+type MyReadonly<T> = any;
+
+/* _____________ Test Cases _____________ */
+import { Equal, Expect } from '@type-challenges/utils';
+
+type cases = [Expect<Equal<MyReadonly<Todo1>, Readonly<Todo1>>>];
+
+interface Todo1 {
+  title: string;
+  description: string;
+  completed: boolean;
+  meta: {
+    author: string;
+  };
+}
+```
+
+<TCLinks questionNumber={'7'} />
+
+## My solution
+
+<details>
+
+<summary>Spoiler warning // Click to reveal answer</summary>
+
+```ts twoslash
+type MyReadonly<T> = {
+  readonly [K in keyof T]: T[K];
+};
+```
+
+</details>
+
+export const TCLinks = ({ questionNumber }) => {
+  return (
+    <span className="badge-links">
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}`}>
+        View on GitHub
+      </a>
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/play`}>
+        take the challenge
+      </a>
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/answer`}>
+        share
+      </a>
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/solutions`}>
+        solutions
+      </a>
+    </span>
+  );
+};

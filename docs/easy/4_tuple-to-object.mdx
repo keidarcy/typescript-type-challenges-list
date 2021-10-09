@@ -42,6 +42,8 @@ type cases = [
 type error = TupleToObject<[[1, 2], {}]>;
 ```
 
+<TCLinks questionNumber={'11'} />
+
 ## my solution
 
 <details>
@@ -55,3 +57,22 @@ type TupleToObject<T extends readonly any[]> = {
 ```
 
 </details>
+
+export const TCLinks = ({ questionNumber }) => {
+  return (
+    <span className="badge-links">
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}`}>
+        View on GitHub
+      </a>
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/play`}>
+        take the challenge
+      </a>
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/answer`}>
+        share
+      </a>
+      <a target="\_blank" href={`https://tsch.js.org/${questionNumber}/solutions`}>
+        solutions
+      </a>
+    </span>
+  );
+};
