@@ -1,33 +1,21 @@
-# Website
+# Typescript Type Challenges List
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+## intro
 
-### Installation
+Typescript Type Challenges List is a collection based on [**Type Challenges**](https://github.com/type-challenges/type-challenges).
+which contains many typescript type system puzzles.
+> This project is aimed at helping you better understand how the type system works, writing your own utilities, or just having fun with the challenges. We are also trying to form a community that you can ask questions and get answers you have faced in the real world - they may become part of the challenges!
 
-```
-$ yarn
-```
+## Why built this
 
-### Local Development
+I almost forget how I solved these puzzles, but when I try to figure out how, it's hard to find by **Type Challenges** UI.
 
-```
-$ yarn start
-```
+**Type Challenges** depends on github repository pages which makes hard to jump between different sites.
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+So I build this site collect all actions of challenge into one place, provides at least one solution and extra type information without navigate to other places.
 
-### Build
+## Features
 
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-```
-$ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+- [x] all actions in one page
+- [x] code snippets with type information
+- [x] quick check the easy answer
