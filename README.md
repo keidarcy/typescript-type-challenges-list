@@ -8,7 +8,7 @@ which contains many typescript type system puzzles.
 
 ## Why built this
 
-I almost forget how I solved these puzzles, but when I try to figure out how, it's hard to find by **Type Challenges** UI.
+I always forget how I solved these puzzles, but when I try to figure out how, it's hard to find by **Type Challenges** UI.
 
 **Type Challenges** depends on github repository pages which makes hard to jump between different sites.
 
