@@ -22,21 +22,9 @@ type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ?
 ```twoslash include test
 /* _____________ Test Cases _____________ */
 type cases = [
-  Expect<Equal<'title', GetReadonlyKeys<Todo1>>>,
-  Expect<Equal<'title' | 'description', GetReadonlyKeys<Todo2>>>
-];
-
-interface Todo1 {
-  readonly title: string;
-  description: string;
-  completed: boolean;
-}
-
-interface Todo2 {
-  readonly title: string;
-  readonly description: string;
-  completed?: boolean;
-}
+    Expect<Equal<UnionToIntersection<'foo' | 42 | true>, 'foo' & 42 & true>>,
+    Expect<Equal<UnionToIntersection<(() => 'foo') | ((i: 42) => true)>, (() => 'foo') & ((i: 42) => true)>>,
+]
 // - case
 ```
 
@@ -60,7 +48,7 @@ type I = Union2Intersection<'foo' | 42 | true>; // expected to be 'foo' & 42 & t
 // @include: helper
 // ---cut---
 /* _____________ Your Code Here _____________ */
-type GetReadonlyKeys<T> = any;
+type UnionToIntersection<U> = any
 
 // @errors: 2344
 // @include: test
