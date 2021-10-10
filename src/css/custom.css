@@ -33,21 +33,30 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   padding: 5px 8px;
   margin-right: 15px;
   color: #b20afa;
+  text-decoration: none;
+}
+.badge-links > a:hover {
+  text-decoration: underline;
 }
 
-.badge-links > a:nth-child(2) {
+.badge-links > a.view {
+  border: 1px solid #b20afa;
+  color: #b20afa;
+}
+
+.badge-links > a.challenge {
+  border: 1px solid #187abf;
+  color: #187abf;
+}
+
+.badge-links > a.share {
   color: #25c2a0;
   border-color: #25c2a0;
 }
 
-.badge-links > a:nth-child(3) {
+.badge-links > a.solution {
   color: #c93a2a;
   border-color: #c93a2a;
-}
-
-.badge-links > a:nth-child(4) {
-  color: #187abf;
-  border-color: #187abf;
 }
 
 [data-theme='light'] .shiki.nord {
