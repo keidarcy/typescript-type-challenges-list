@@ -50,6 +50,13 @@ const githubUrl = 'https://github.com/keidarcy/' + lowerCaseTitle;
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        algolia: {
+          appId: 'BH4D9OD16A',
+          apiKey: '10bd867cf7c65a2a7f1dc6f749e047a4',
+          indexName: 'typescript-type-challenge',
+          contextualSearch: true,
+          searchParameters: { facetFilters: ['type:content'] },
+        },
         navbar: {
           title,
           logo: {
