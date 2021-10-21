@@ -55,7 +55,7 @@ const githubUrl = 'https://github.com/keidarcy/' + lowerCaseTitle;
           apiKey: '10bd867cf7c65a2a7f1dc6f749e047a4',
           indexName: 'typescript-type-challenge',
           contextualSearch: true,
-          searchParameters: { facetFilters: ['type:content'] },
+          searchParameters: { facetFilters: ['type:lvl1', 'type:text'] },
         },
         navbar: {
           title,
